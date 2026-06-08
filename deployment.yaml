@@ -34,7 +34,7 @@ spec:
         args:
           - |
             conda install -y conda-forge::huggingface_hub
-            huggingface-cli download Qwen/Qwen2.5-1.5B-Instruct --local-dir /workspace/model 
+            huggingface-cli download HuggingFaceTB/SmolLM2-135M-Instruct --local-dir /workspace/model 
       containers:
       - name: vllm-container
         image: vllm/vllm-openai-cpu:latest-x86_64
@@ -51,13 +51,11 @@ spec:
         args:
         - "serve"
         - "/workspace/model"
+        - "--model"
+        - "HuggingFaceTB/SmolLM2-135M-Instruct" 
         - "--device"
         - "cpu"
         - "--dtype"
-        - "bfloat16"
+        - "float32" 
         - "--max-model-len"
         - "2048"
-        - "--max-num-seqs" 
-        - "4"
-        - "--kv-cache-dtype"
-        - "fp8"
