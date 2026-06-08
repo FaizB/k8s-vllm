@@ -34,7 +34,7 @@ spec:
         args:
           - |
             conda install -y conda-forge::huggingface_hub
-            huggingface-cli download HuggingFaceTB/SmolLM2-135M-Instruct --local-dir /workspace/model 
+            hf download HuggingFaceTB/SmolLM2-135M-Instruct --local-dir /workspace/model 
       containers:
       - name: vllm-container
         image: vllm/vllm-openai-cpu:latest-x86_64
@@ -50,12 +50,20 @@ spec:
           mountPath: /workspace/model
         args:
         - "--model"
+<<<<<<< Updated upstream
         - "/workspace/model"  # Point directly to the local folder containing the weights
         - "--served-model-name"
         - "HuggingFaceTB/SmolLM2-135M-Instruct" # Exposes the clean name to your API queries
         - "--device"
         - "cpu"
+=======
+        - "/workspace/model"
+        - "--served-model-name"
+        - "HuggingFaceTB/SmolLM2-135M-Instruct"
+>>>>>>> Stashed changes
         - "--dtype"
-        - "float32" 
+        - "float32"
         - "--max-model-len"
         - "2048"
+        - "--gpu-memory-utilization"
+        - "0.5"
