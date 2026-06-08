@@ -20,7 +20,7 @@ spec:
         - name: mem-lock
           emptyDir:
             medium: Memory
-            sizeLimit: 4Gi
+            sizeLimit: "4Gi"
         - name: vllm-storage
           persistentVolumeClaim:
             claimName: vllm-pvc
@@ -42,17 +42,17 @@ spec:
         - containerPort: 8000
         env:
         - name: HF_HUB_OFFLINE
-          value: 1
+          value: "1"
         volumeMounts:
         - name: mem-lock
           mountPath: /dev/shm
         - name: vllm-storage
           mountPath: /workspace/model
         args:
-        - "serve"
-        - "/workspace/model"
         - "--model"
-        - "HuggingFaceTB/SmolLM2-135M-Instruct" 
+        - "/workspace/model"  # Point directly to the local folder containing the weights
+        - "--served-model-name"
+        - "HuggingFaceTB/SmolLM2-135M-Instruct" # Exposes the clean name to your API queries
         - "--device"
         - "cpu"
         - "--dtype"
