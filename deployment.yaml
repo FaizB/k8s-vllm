@@ -50,17 +50,11 @@ spec:
           mountPath: /workspace/model
         args:
         - "--model"
-<<<<<<< Updated upstream
         - "/workspace/model"  # Point directly to the local folder containing the weights
         - "--served-model-name"
         - "HuggingFaceTB/SmolLM2-135M-Instruct" # Exposes the clean name to your API queries
         - "--device"
         - "cpu"
-=======
-        - "/workspace/model"
-        - "--served-model-name"
-        - "HuggingFaceTB/SmolLM2-135M-Instruct"
->>>>>>> Stashed changes
         - "--dtype"
         - "float32"
         - "--max-model-len"
