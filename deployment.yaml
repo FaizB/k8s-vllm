@@ -53,8 +53,6 @@ spec:
         - "/workspace/model"  
         - "--served-model-name"
         - "HuggingFaceTB/SmolLM2-135M-Instruct" 
-        - "--device"
-        - "cpu"
         - "--dtype"
         - "float32"
         - "--max-model-len"
